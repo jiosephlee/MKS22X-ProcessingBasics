@@ -10,11 +10,11 @@ class Visualizer {
   float x, y;
   float [] values;
   float [] speeds;
-  Visualizer(float x, float y) {
+  Visualizer(float x, float y,int bars) {
     this.x = x;
     this.y = y;
-    values = new float[10];
-    speeds = new float[10];
+    values = new float[bars];
+    speeds = new float[bars];
     for (int i = 0; i < values.length; i++) {
       values[i] = random(-99, 99);
       speeds[i] = random(2)/2 + 0.5;
@@ -43,10 +43,10 @@ class Visualizer {
     for(int i = 0; i < values.length; i++){
     if (values[i] < 0){
       fill(255, 255*((100 + values[i])/100), 0);
-      rect(i*20 + 20, 120, 20, values[i]*-1);
+      rect(i*400/values.length + 20, 120, 400/values.length, values[i]*-1);
     } else if (values[i] > 0){
       fill(255*((100 - values[i])/100),255, 0);
-      rect(i*20 + 20, 120, 20, values[i]*-1);
+      rect(i*400/values.length + 20, 120, 400/values.length, values[i]*-1);
     }
     }
 
@@ -74,7 +74,7 @@ class Visualizer {
 
 void setup() {
   size(600, 500);
-  v = new Visualizer(20, 20);
+  v = new Visualizer(20,20,40);
 }
 void draw() {
   background(255);
